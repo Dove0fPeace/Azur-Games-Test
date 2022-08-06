@@ -36,10 +36,7 @@ public class Character : MonoBehaviour
 
         transform.Translate(Vector3.forward * Time.deltaTime * m_Speed, Space.World);
 
-        //float f = GetYPosition();
-
         transform.position = new Vector3(GetXPosition(), transform.position.y, transform.position.z);
-        //transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, transform.localEulerAngles.z);
     }
 
     private float GetXPosition()
@@ -50,8 +47,6 @@ public class Character : MonoBehaviour
         {
             mouseWorldPosition = raycastHit.point;
         }
-       
-        print(mouseWorldPosition);
 
         return mouseWorldPosition.x;
     }
