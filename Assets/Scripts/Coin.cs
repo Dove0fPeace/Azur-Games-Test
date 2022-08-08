@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
+    public static event Action OnCoinCollected;
+
     [SerializeField] private float m_RotateSpeed;
 
     [SerializeField] private GameObject m_PickupFX;
@@ -16,6 +17,7 @@ public class Coin : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Instantiate(m_PickupFX, transform.position, Quaternion.identity);
+        OnCoinCollected?.Invoke();
         Destroy(gameObject);
     }
 }

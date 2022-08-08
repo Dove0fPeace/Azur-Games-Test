@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -14,10 +13,19 @@ public class Character : MonoBehaviour
 
     private Vector3 mouseWorldPosition;
 
+    private bool _runIsStarted;
+
+    public static event Action OnStartRun;
+
     private void Update()
     {
         if(Input.GetMouseButton(0))
         {
+            if(_runIsStarted == false)
+            {
+                _runIsStarted = true;
+                OnStartRun?.Invoke();
+            }
             _isRunning = true;
         }
         else
@@ -28,6 +36,11 @@ public class Character : MonoBehaviour
         Move();
 
         m_Animator.SetBool("isRuning", _isRunning);
+    }
+
+    private void OnEnable()
+    {
+        m_Animator.SetBool("isRuning", false);
     }
 
     private void Move()
