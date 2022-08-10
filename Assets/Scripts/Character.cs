@@ -34,11 +34,10 @@ public class Character : MonoBehaviour
         }
 
         Move();
-
         m_Animator.SetBool("isRuning", _isRunning);
     }
 
-    private void OnEnable()
+    private void OnDisable()
     {
         m_Animator.SetBool("isRuning", false);
     }

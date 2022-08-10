@@ -15,6 +15,7 @@ public class GameStageManager : MonoBehaviour
     [SerializeField] private GameObject m_StartUI;
     [SerializeField] private GameObject m_PlayUI;
     [SerializeField] private GameObject m_FinishUI;
+    [SerializeField] private GameObject m_ProgressBar;
 
     private GameStage _currentGameStage;
 
@@ -39,6 +40,7 @@ public class GameStageManager : MonoBehaviour
         _currentGameStage = GameStage.PlayGame;
         m_FolowingCamera.ChangeGameStage(_currentGameStage);
         m_StartUI.SetActive(false);
+        m_ProgressBar.SetActive(true);
     }
 
     private void FinishGameStage()
@@ -46,6 +48,7 @@ public class GameStageManager : MonoBehaviour
         _currentGameStage = GameStage.FinishGame;
         m_FolowingCamera.ChangeGameStage(_currentGameStage);
         m_FinishUI.SetActive(true);
+        m_ProgressBar.SetActive(false);
         m_Character.enabled = false;
     }
 }

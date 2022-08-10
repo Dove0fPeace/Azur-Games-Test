@@ -14876,8 +14876,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.3
-      minScalar: 0.6
+      scalar: 0.4
+      minScalar: 0.8
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -15217,7 +15217,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 60
+    angle: 68.35
     length: 0.36
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -15532,8 +15532,8 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 3
-        scalar: 7
-        minScalar: 5
+        scalar: 12
+        minScalar: 9
         maxCurve:
           serializedVersion: 2
           m_Curve:
@@ -16095,7 +16095,7 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 21300000, guid: 0c308d0d141d8e54ab3d590993a6a3d6, type: 3}
+    - sprite: {fileID: 21300000, guid: 3b32e6e1320444e47bb2e039057745d1, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:

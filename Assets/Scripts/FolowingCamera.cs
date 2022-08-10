@@ -10,7 +10,8 @@ public class FolowingCamera : MonoBehaviour
     [SerializeField] private Vector3 m_PlayRotation;
 
     [Space(10)]
-    [SerializeField] private Transform m_FinishTargetTransform;
+    [SerializeField] private Vector3 m_FinishOffset;
+    [SerializeField] private Vector3 m_FinishRotation;
     
     [Space(10)]
     [SerializeField] private float m_OffsetChangeSpeed;
@@ -23,22 +24,19 @@ public class FolowingCamera : MonoBehaviour
     private Vector3 _currentOffset;
     private Vector3 _currentRotation;
 
-    private bool _finish = false;
+    [SerializeField] private bool _finish = false;
 
     private void Update()
     {
-        if (_finish)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, m_FinishTargetTransform.position, m_OffsetChangeSpeed * Time.deltaTime);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, m_FinishTargetTransform.rotation, m_RotationChangeSpeed * Time.deltaTime);
-        }
-        else
-        {
-            targetPosition = new Vector3(0, m_TargetTransform.position.y + _currentOffset.y, m_TargetTransform.position.z + _currentOffset.z);
+        targetPosition = new Vector3(m_TargetTransform.position.x + _currentOffset.x, m_TargetTransform.position.y + _currentOffset.y, m_TargetTransform.position.z + _currentOffset.z);
 
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, m_OffsetChangeSpeed * Time.deltaTime);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(_currentRotation), m_RotationChangeSpeed * Time.deltaTime);
+        if(_finish == false)
+        {
+            targetPosition.x = 0;
         }
+
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, m_OffsetChangeSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(_currentRotation), m_RotationChangeSpeed * Time.deltaTime);
     }
 
     public void ChangeGameStage(GameStage stage)
@@ -56,6 +54,8 @@ public class FolowingCamera : MonoBehaviour
                 break;
 
             case GameStage.FinishGame:
+                _currentOffset = m_FinishOffset;
+                _currentRotation = m_FinishRotation;
                 _finish = true;
                 break;
         }
