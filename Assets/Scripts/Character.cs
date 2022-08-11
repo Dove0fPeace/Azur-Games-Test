@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    [SerializeField] private float m_Speed;
+    [SerializeField] private float m_ForwardSpeed;
+
+    [SerializeField] private float m_SideMoveSpeed;
 
     [SerializeField] private Animator m_Animator;
 
@@ -46,9 +48,11 @@ public class Character : MonoBehaviour
     {
         if(_isRunning == false) return;
 
-        transform.Translate(Vector3.forward * Time.deltaTime * m_Speed, Space.World);
+        transform.Translate(Vector3.forward * Time.deltaTime * m_ForwardSpeed, Space.World);
 
-        transform.position = new Vector3(GetXPosition(), transform.position.y, transform.position.z);
+        float targetXPosition = Mathf.Lerp(transform.position.x, GetXPosition(), m_SideMoveSpeed * Time.deltaTime);
+
+        transform.position = new Vector3(targetXPosition, transform.position.y, transform.position.z);
     }
 
     private float GetXPosition()
